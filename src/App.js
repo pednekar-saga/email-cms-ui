@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Login from "./components/Login";
+import { getItem, setItem } from "./shared/store";
+import queryString from "query-string";
+function App(props) {
+   const [loggedIn, setLoggedIn] = useState({ loggedIn: false });
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+   useEffect(() => {
+      var query = queryString.parse(props.location.search);
+      if (query.token) {
+         setItem("token", query.token);
+         setLoggedIn({
+            loggedIn: true
+         });
+      }
+      return;
+   }, []);
+
+   return (
+      <div className="App">
+         {loggedIn && getItem("token") ? (
+            <div>Logout Component </div>
+         ) : (
+            <Login />
+         )}
+      </div>
+   );
 }
 
 export default App;
