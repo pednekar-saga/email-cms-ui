@@ -7,3 +7,7 @@ export const getItem = name => {
       ? window.localStorage.getItem(name)
       : "";
 };
+
+export const removeItem = name => {
+   return window.localStorage.removeItem(name);
+};
