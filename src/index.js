@@ -1,23 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Auth from '../src/components/Auth'
+import Home from '../src/components/Home'
+import 'antd/dist/antd.css';
 
 
-/**
- * @description: Wraps auth component 
- * @param {any} props 
- * @returns 
- */
 
-
-function Home(props) {
-  return (
-    <div>
-      <Auth props={props} />
-    </div>
-  );
-}
 
 
 /** 
